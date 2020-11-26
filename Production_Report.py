@@ -29,17 +29,19 @@ QC=QC.fillna(0)
 ###################################
 st.subheader('Production DC report')
 DC
-DC['Pct']=(DC['NG-Pcs']/DC['DC-Pcs'])*100
+DC['Pct']=((DC['NG-Pcs'].sum()/DC['DC-Pcs'].sum())*100)
 st.subheader('DC Summarize')
 DCsum=DC[['DC-Pcs','BF-Pcs','NG-Pcs']].sum()
 DCsum
-DCpct=DC['Pct'].mean()
+DCpct=DC['Pct']
+
 st.subheader('NG%')
+DCpct=DCpct.mean()
 st.warning(DCpct)
 #############################
 st.subheader('Production FN report')
 FN
-FN['Pct']=(FN['NG-Pcs']/(FN['BM-Pcs']+FN['FG0-Pcs']))*100
+FN['Pct']=(FN['NG-Pcs'].sum()/(FN['BM-Pcs']+FN['FG0-Pcs']).sum())*100
 st.subheader('FN Summarize')
 FNsum=FN[['BM-Pcs','FG0-Pcs','NG-Pcs']].sum()
 FNsum
@@ -49,7 +51,7 @@ st.warning(FNpct)
 #############################
 st.subheader('Production MC report')
 MC
-MC['Pct']=(MC['NG-Pcs']/(MC['M-FG0']+MC['MC-Pcs']))*100
+MC['Pct']=(MC['NG-Pcs'].sum()/MC['MC-Pcs'].sum())*100
 st.subheader('MC Summarize')
 MCsum=MC[['MC-Pcs','M-FG0','NG-Pcs']].sum()
 MCsum
@@ -60,7 +62,7 @@ st.warning(MCpct)
 st.subheader('Production QC report')
 QC
 
-QC['Pct']=(QC['TT-NG-Pcs']/QC['Sorted-Pcs'])*100
+QC['Pct']=(QC['TT-NG-Pcs'].sum()/QC['Sorted-Pcs'].sum())*100
 st.subheader('QC Summarize')
 
 QCsum=QC[['Sorted-Pcs','FG1-Pcs','TT-NG-Pcs']].sum()
