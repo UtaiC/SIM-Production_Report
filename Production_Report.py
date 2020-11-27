@@ -38,6 +38,15 @@ DCpct=DC['Pct']
 st.subheader('NG%')
 DCpct=DCpct.mean()
 st.warning(DCpct)
+
+DCpph=DC['DC-Pcs']/(DC['Work-Hr']+DC['OT-Hr'])
+DCpph=DCpph.groupby('PartNo').mean()
+st.subheader('DC Performance Pcs/Hrs')
+st.table(DCpph)
+st.bar_chart(DCpph)
+st.subheader('DC SUM Performance Pcs/Hrs')
+DCpphm=DCpph.mean()
+st.success(DCpphm)
 #############################
 st.subheader('Production FN report')
 FN
@@ -48,6 +57,15 @@ FNsum
 FNpct=FN['Pct'].mean()
 st.subheader('NG%')
 st.warning(FNpct)
+
+FNpph=(FN['BM-Pcs']+FN['FG0-Pcs'])/(FN['Work-Hr']+FN['OT-Hr'])
+FNpph=FNpph.groupby('PartNo').mean()
+st.subheader('FN Performance Pcs/Hrs')
+st.table(FNpph)
+st.bar_chart(FNpph)
+st.subheader('FN SUM Performance Pcs/Hrs')
+FNpphm=FNpph.mean()
+st.success(FNpphm)
 #############################
 st.subheader('Production MC report')
 MC
@@ -58,6 +76,15 @@ MCsum
 MCpct=MC['Pct'].mean()
 st.subheader('NG%')
 st.warning(MCpct)
+
+MCpph=MC['MC-Pcs']/(MC['Work-Hr']+MC['OT-Hr'])
+MCpph=MCpph.groupby('PartNo').mean()
+st.subheader('MC Performance Pcs/Hrs')
+st.table(MCpph)
+st.bar_chart(MCpph)
+st.subheader('MC SUM Performance Pcs/Hrs')
+MCpphm=MCpph.mean()
+st.success(MCpphm)
 #############################
 st.subheader('Production QC report')
 QC
