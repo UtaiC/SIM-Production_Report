@@ -12,15 +12,15 @@ st.image(Logo,width=500)
 st.header('**Production Report**')
 db=pd.read_excel('Database.xlsx','DB')
 #########################
-DC=pd.read_excel('DC-Data.xlsx',index_col=1,header=3)
+DC=pd.read_excel('DC-Data-1.xlsx',index_col=1,header=3)
 DC.drop('Unnamed: 0',axis='columns', inplace=True)
 DC=DC.fillna(0)
 #########################
-FN=pd.read_excel('FN-Data.xlsx',index_col=1,header=3)
+FN=pd.read_excel('FN-Data-1.xlsx',index_col=1,header=3)
 FN.drop('Unnamed: 0',axis='columns', inplace=True)
 FN=FN.fillna(0)
 #########################
-MC=pd.read_excel('MC-Data.xlsx',index_col=1,header=3)
+MC=pd.read_excel('MC-Data-1.xlsx',index_col=1,header=3)
 MC.drop('Unnamed: 0',axis='columns', inplace=True)
 MC=MC.fillna(0)
 #########################
@@ -47,6 +47,13 @@ st.bar_chart(DCpph)
 st.subheader('DC SUM Performance Pcs/Hrs')
 DCpphm=DCpph.mean()
 st.success(DCpphm)
+
+DC['Pcsphr']=DC['DC-Pcs']/(DC['Work-Hr']+DC['OT-Hr'])
+DChdmc=DC[['HDMC','Pcsphr']].groupby('HDMC').mean()
+st.subheader('HDMC SUM Performance Pcs/Hrs')
+st.table(DChdmc)
+st.bar_chart(DChdmc)
+
 #############################
 st.subheader('Production FN report')
 FN
