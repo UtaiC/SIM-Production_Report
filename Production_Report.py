@@ -12,19 +12,19 @@ st.image(Logo,width=500)
 st.header('**Production Report**')
 db=pd.read_excel('Database.xlsx','DB')
 #########################
-DC=pd.read_excel('DC-Data-1.xlsx',index_col=1,header=3)
+DC=pd.read_excel('DC-Data-Nov-20.xlsx',index_col=1,header=3)
 DC.drop('Unnamed: 0',axis='columns', inplace=True)
 DC=DC.fillna(0)
 #########################
-FN=pd.read_excel('FN-Data-1.xlsx',index_col=1,header=3)
+FN=pd.read_excel('FN-Data-Nov-20.xlsx',index_col=1,header=3)
 FN.drop('Unnamed: 0',axis='columns', inplace=True)
 FN=FN.fillna(0)
 #########################
-MC=pd.read_excel('MC-Data-1.xlsx',index_col=1,header=3)
+MC=pd.read_excel('MC-Data-Nov-20.xlsx',index_col=1,header=3)
 MC.drop('Unnamed: 0',axis='columns', inplace=True)
 MC=MC.fillna(0)
 #########################
-QC=pd.read_excel('QC-Data.xlsx')
+QC=pd.read_excel('QC-Data-Nov-20.xlsx')
 QC=QC.fillna(0)
 ###################################
 st.subheader('Production DC report')
